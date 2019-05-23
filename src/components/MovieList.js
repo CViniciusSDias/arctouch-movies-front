@@ -1,7 +1,7 @@
 import React from 'react';
-import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Movie from "./Movie";
+import Grid from '@material-ui/core/Grid';
+import Movie from './Movie';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = () => ({
     gridContainer: {

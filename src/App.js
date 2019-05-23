@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import MovieList from './components/MovieList';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import PageHeader from './components/PageHeader';
+import { withStyles } from '@material-ui/core/styles';
 import './App.css';
-import { withStyles } from "@material-ui/core/styles";
-import MovieList from "./components/MovieList";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import PageHeader from "./components/PageHeader";
 
 const styles = theme => ({
   mt5: {
