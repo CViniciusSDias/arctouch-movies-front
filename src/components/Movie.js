@@ -10,6 +10,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -30,6 +31,10 @@ const styles = theme => ({
     },
     tableText: {
         width: 160
+    },
+    link: {
+        color: 'inherit',
+        textDecoration: 'none'
     }
 });
 
@@ -80,7 +85,9 @@ function Movie(props) {
             </CardContent>
 
             <CardActions>
-                <Button size="small">View Details</Button>
+                <Button size="small">
+                    <Link to={`/details/${movie.id}`} className={classes.link}>View more</Link>
+                </Button>
             </CardActions>
         </Card>
     );
