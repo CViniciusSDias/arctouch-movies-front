@@ -2,12 +2,14 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core//Typography';
 import Divider from '@material-ui/core/Divider';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -76,6 +78,10 @@ function Movie(props) {
                     </TableBody>
                 </Table>
             </CardContent>
+
+            <CardActions>
+                <Button size="small">View Details</Button>
+            </CardActions>
         </Card>
     );
 }

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Typography from '@material-ui/core/Typography';
 import PageHeader from './PageHeader';
 import { withStyles } from '@material-ui/core/styles';
 import MovieList from './MovieList';
+import UpcomingMoviesDates from "./UpcomingMoviesDates";
 
 const styles = theme => ({
     mt5: {
@@ -11,30 +11,46 @@ const styles = theme => ({
     }
 });
 
-function UpcomingMoviesPage(props) {
-    const { classes, movieList, startDate, endDate } = props;
+class UpcomingMoviesPage extends Component {
+    constructor(props) {
+        super(props);
 
-    return (
-        <div>
-            <PageHeader />
+        this.props = props;
+        this.state = {
+            movieList: [],
+            startDate: null,
+            endDate: null
+        };
+    }
 
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                Upcoming Movies
-            </Typography>
+    componentWillMount() {
+        fetch('http://localhost:8080/movies/upcoming')
+            .then(res => res.json())
+            .then(response => this.setState({
+                movieList: response.movies,
+                startDate: response.dates.start,
+                endDate: response.dates.end,
+            }));
+    }
 
-            <Typography variant="h5" gutterBottom>
-                <b>From:</b> {startDate}
-                &nbsp;
-                <b>To:</b> {endDate}
-            </Typography>
+    render() {
+        const { classes } = this.props;
+        const { movieList, startDate, endDate } = this.state;
 
-            <div className={classes.mt5}>
-                {movieList.length
-                    ? <MovieList movieList={movieList} />
-                    : <CircularProgress className={classes.mt5} />}
+        return (
+            <div style={{textAlign: 'center'}}>
+                <PageHeader/>
+
+                {movieList.length === 0
+                    ? <CircularProgress className={classes.mt5}/>
+                    : <div>
+                        <UpcomingMoviesDates startDate={startDate} endDate={endDate} />
+                        <MovieList movieList={movieList} className={classes.mt5} />
+                    </div>
+                }
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default withStyles(styles)(UpcomingMoviesPage);
