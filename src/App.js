@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import './App.css';
-import Icon from "@material-ui/core/Icon";
 import { withStyles } from "@material-ui/core/styles";
 import MovieList from "./components/MovieList";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import PageHeader from "./components/PageHeader";
 
 const styles = theme => ({
-  icon: {
-    marginRight: theme.spacing.unit * 2
-  },
   mt5: {
     marginTop: theme.spacing.unit * 5
   }
@@ -38,14 +32,7 @@ class App extends Component {
 
     return (
         <div className="App">
-          <AppBar position="static">
-            <Toolbar>
-              <Icon className={classes.icon}>movie</Icon>
-              <Typography variant="h6" color="inherit" noWrap>
-                Upcoming Movies
-              </Typography>
-            </Toolbar>
-          </AppBar>
+          <PageHeader />
 
           <div className={classes.mt5}>
               {this.state.movieList.length
