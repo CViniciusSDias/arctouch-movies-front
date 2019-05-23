@@ -1,26 +1,16 @@
 import React, { Component } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import PageHeader from './PageHeader';
+import PageHeader from '../PageHeader';
 import { withStyles } from '@material-ui/core/styles';
 import MovieList from './MovieList';
+import {ApiService} from "../../service/ApiService";
+import AlertDanger from "../AlertDanger";
 import UpcomingMoviesDates from "./UpcomingMoviesDates";
-import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
     mt5: {
         marginTop: theme.spacing.unit * 5
     },
-    alertDanger: {
-        backgroundColor: '#f8d7da',
-        border: '1px solid #f8d7da',
-        borderRadius: 4,
-        maxWidth: 500,
-        margin: '0 auto',
-        padding: theme.spacing.unit * 2
-    },
-    pinkColor: {
-        color: '#721c24',
-    }
 });
 
 class UpcomingMoviesPage extends Component {
@@ -37,26 +27,11 @@ class UpcomingMoviesPage extends Component {
     }
 
     componentWillMount() {
-        fetch('http://localhost:8080/movies/upcoming')
-            .then(res => {
-                if (!res.ok) throw res;
-                return res.json();
-            })
-            .then(response => ({
-                movieList: response.movies,
-                startDate: response.dates.start,
-                endDate: response.dates.end,
-            }))
-            .catch(res => {
-                if (typeof res.json === 'function') {
-                    return res.json();
-                }
-
-                return {
-                    status_message: res.message
-                };
-            })
-            .then(state => this.setState(state));
+        ApiService.fetchFromApi('/movies/upcoming', response => ({
+            movieList: response.movies,
+            startDate: response.dates.start,
+            endDate: response.dates.end,
+        })).then(state => this.setState(state));
     }
 
     render() {
@@ -67,16 +42,7 @@ class UpcomingMoviesPage extends Component {
             <div style={{textAlign: 'center'}}>
                 <PageHeader/>
 
-                {status_message.length
-                    ? <div className={classes.alertDanger}>
-                        <Typography className={classes.pinkColor}>
-                            Failed to fetch the upcoming movies.
-                        </Typography>
-                        <Typography className={classes.pinkColor}>
-                            Error details: <i>{status_message}</i>
-                        </Typography>
-                    </div>
-                    : null}
+                <AlertDanger message={status_message} />
 
                 <div hidden={status_message.length > 0 || movieList.length > 0}>
                     <CircularProgress className={classes.mt5} />

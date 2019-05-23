@@ -4,11 +4,13 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 import UpcomingMoviesPage from "./components/UpcomingMovies/UpcomingMoviesPage";
 import './index.css';
+import MovieDetailsPage from "./components/MovieDetails/MovieDetailsPage";
 
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
             <Route path="/" exact={true} component={UpcomingMoviesPage} />
+            <Route path="/details/:id" exact={true} component={MovieDetailsPage} />
         </Switch>
     </BrowserRouter>,
     document.getElementById('root')
