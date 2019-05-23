@@ -1,47 +1,36 @@
 import React, { Component } from 'react';
-import MovieList from './components/MovieList';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import PageHeader from './components/PageHeader';
-import { withStyles } from '@material-ui/core/styles';
+import UpcomingMoviesPage from './components/UpcomingMoviesPage';
 import './App.css';
 
-const styles = theme => ({
-  mt5: {
-    marginTop: theme.spacing.unit * 5
-  }
-});
-
 class App extends Component {
-
   constructor(props) {
     super(props);
+
     this.props = props;
     this.state = {
-      movieList: []
+      movieList: [],
+      startDate: null,
+      endDate: null
     };
   }
 
   componentWillMount() {
     fetch('http://localhost:8080/movies/upcoming')
         .then(res => res.json())
-        .then(movieList => this.setState({movieList}));
+        .then(response => this.setState({
+          movieList: response.movies,
+          startDate: response.dates.start,
+          endDate: response.dates.end,
+        }));
   }
 
   render() {
-    const {classes} = this.props;
-
     return (
         <div className="App">
-          <PageHeader />
-
-          <div className={classes.mt5}>
-              {this.state.movieList.length
-                  ? <MovieList movieList={this.state.movieList} />
-                  : <CircularProgress className={classes.mt5} />}
-          </div>
+          <UpcomingMoviesPage {...this.state} />
         </div>
     );
   }
 }
 
-export default withStyles(styles)(App);
+export default App;
