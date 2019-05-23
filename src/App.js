@@ -2,22 +2,18 @@ import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import './App.css';
 import Icon from "@material-ui/core/Icon";
 import { withStyles } from "@material-ui/core/styles";
-import Movie from "./components/Movie";
+import MovieList from "./components/MovieList";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const styles = theme => ({
   icon: {
     marginRight: theme.spacing.unit * 2
   },
-  gridContainer: {
-    maxWidth: '1024px',
-    margin: '0 auto'
-  },
-  movie: {
-    maxWidth: 300
+  mt5: {
+    marginTop: theme.spacing.unit * 5
   }
 });
 
@@ -51,15 +47,11 @@ class App extends Component {
             </Toolbar>
           </AppBar>
 
-          <Grid container spacing={8} className={classes.gridContainer}>
-            {this.state.movieList.map((movie, i) => (
-                <Grid item xs={6} md={4} key={i}>
-                  <div className={classes.movie}>
-                    <Movie movie={movie} />
-                  </div>
-                </Grid>
-            ))}
-          </Grid>
+          <div className={classes.mt5}>
+              {this.state.movieList.length
+                  ? <MovieList movieList={this.state.movieList} />
+                  : <CircularProgress className={classes.mt5} />}
+          </div>
         </div>
     );
   }
