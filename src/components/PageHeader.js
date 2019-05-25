@@ -78,7 +78,11 @@ function PageHeader(props) {
                         onChange={handleChangeMovieQuery}
                     />
 
-                    <IconButton component={Link} to={`/search/${movieQuery}`} className={classes.iconButton} aria-label="Search">
+                    <IconButton component={Link}
+                                onClick={() => window.location.pathname.startsWith('/search') ? window.location.href = `/search/${movieQuery}` : null}
+                                disabled={movieQuery.length === 0}
+                                to={`/search/${movieQuery}`}
+                                className={classes.iconButton} aria-label="Search">
                         <Icon>search</Icon>
                     </IconButton>
                 </div>
