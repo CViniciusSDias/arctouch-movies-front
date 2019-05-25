@@ -5,12 +5,14 @@ import * as serviceWorker from './serviceWorker';
 import UpcomingMoviesPage from "./components/UpcomingMovies/UpcomingMoviesPage";
 import './index.css';
 import MovieDetailsPage from "./components/MovieDetails/MovieDetailsPage";
+import SearchMoviesPage from "./components/SearchMoviesPage/SearchMoviesPage";
 
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
             <Route path="/" exact={true} component={UpcomingMoviesPage} />
             <Route path="/details/:id" exact={true} component={MovieDetailsPage} />
+            <Route path="/search/:query" exact={true} component={SearchMoviesPage} />
         </Switch>
     </BrowserRouter>,
     document.getElementById('root')

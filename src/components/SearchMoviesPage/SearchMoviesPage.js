@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import MovieList from '../MovieList';
 import {ApiService} from "../../service/ApiService";
 import AlertDanger from "../AlertDanger";
-import UpcomingMoviesDates from "./UpcomingMoviesDates";
 
 const styles = theme => ({
     mt5: {
@@ -13,30 +12,31 @@ const styles = theme => ({
     },
 });
 
-class UpcomingMoviesPage extends Component {
+class SearchMoviesPage extends Component {
     constructor(props) {
         super(props);
 
         this.props = props;
         this.state = {
             movieList: [],
-            startDate: null,
-            endDate: null,
             status_message: ''
         };
     }
 
-    componentWillMount() {
-        ApiService.fetchFromApi('/movies/upcoming', response => ({
-            movieList: response.movies,
-            startDate: response.dates.start,
-            endDate: response.dates.end,
+    componentDidMount() {
+        const { query } = this.props.match.params;
+        this.loadMovies(query);
+    }
+
+    loadMovies(query) {
+        ApiService.fetchFromApi(`/movies/query?q=${query}`, response => ({
+            movieList: response.movies
         })).then(state => this.setState(state));
     }
 
     render() {
         const { classes } = this.props;
-        const { movieList, startDate, endDate, status_message } = this.state;
+        const { movieList, status_message } = this.state;
 
         return (
             <div style={{textAlign: 'center'}}>
@@ -49,7 +49,6 @@ class UpcomingMoviesPage extends Component {
                 </div>
 
                 <div hidden={movieList.length === 0}>
-                    <UpcomingMoviesDates startDate={startDate} endDate={endDate} />
                     <MovieList movieList={movieList} className={classes.mt5} />
                 </div>
             </div>
@@ -57,4 +56,4 @@ class UpcomingMoviesPage extends Component {
     }
 }
 
-export default withStyles(styles)(UpcomingMoviesPage);
+export default withStyles(styles)(SearchMoviesPage);
