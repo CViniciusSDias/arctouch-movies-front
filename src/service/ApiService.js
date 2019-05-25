@@ -1,5 +1,7 @@
 export class ApiService {
-    static #apiUrl = window.location.host.startsWith('localhost') ? 'http://localhost:8080' : 'https://arctouch-api.herokuapp.com';
+    static #apiUrl = window.location.host.startsWith('localhost')
+        ? 'http://localhost:8080'
+        : 'https://arctouch-api.herokuapp.com';
 
     static fetchFromApi(path, callback) {
         const url = `${ApiService.#apiUrl}${path}`;

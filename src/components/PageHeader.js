@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -6,7 +6,7 @@ import Icon from '@material-ui/core/Icon';
 import InputBase from "@material-ui/core/InputBase";
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from "@material-ui/core/styles/colorManipulator";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import IconButton from "@material-ui/core/IconButton";
 
 const styles = theme => ({
@@ -50,54 +50,82 @@ const styles = theme => ({
     },
 });
 
-function PageHeader(props) {
-    const { classes } = props;
-    const [movieQuery, setMovieQuery] = useState('');
+class PageHeader extends Component {
+    constructor(props) {
+        super(props);
 
-    const handleChangeMovieQuery = event => {
-        setMovieQuery(event.target.value);
-    };
+        this.state = {
+            movieQuery: '',
+            redirectToSearch: false
+        };
+    }
 
-    const dispatchSearchEvent = query => {
+    handleChangeMovieQuery(event) {
+        this.setState({
+            movieQuery: event.target.value
+        });
+    }
+
+    dispatchSearchEvent() {
         if (!window.location.hash.includes('/search')) {
             return;
         }
 
-        let ev = new CustomEvent('search', { detail: query });
+        let ev = new CustomEvent('search', {detail: this.state.movieQuery});
         document.dispatchEvent(ev);
-    };
+    }
 
-    return (
-        <AppBar position="static" className={classes.appBar}>
-            <Toolbar>
-                <Icon className={classes.icon} edge="start">movie</Icon>
-                <Typography variant="h6" color="inherit" noWrap>
-                    <Link to="/" className={classes.link}>Upcoming Movies</Link>
-                </Typography>
+    handleKeyDown(event) {
+        if (event.key === 'Enter' && this.state.movieQuery.length > 0) {
+            this.setState({
+                redirectToSearch: true
+            });
+        }
+    }
 
-                <div className={classes.grow} />
+    render() {
+        const { movieQuery, redirectToSearch } = this.state;
+        const searchUrl = `/search/${movieQuery}`;
 
-                <div className={classes.search}>
-                    <InputBase
-                        placeholder="Search movies…"
-                        classes={{
-                            root: classes.inputRoot,
-                            input: classes.inputInput,
-                        }}
-                        onChange={handleChangeMovieQuery}
-                    />
+        if (redirectToSearch) {
+            return <Redirect to={searchUrl} />;
 
-                    <IconButton component={Link}
-                                onClick={() => dispatchSearchEvent(movieQuery)}
-                                disabled={movieQuery.length === 0}
-                                to={`/search/${movieQuery}`}
-                                className={classes.iconButton} aria-label="Search">
-                        <Icon>search</Icon>
-                    </IconButton>
-                </div>
-            </Toolbar>
-        </AppBar>
-    );
+        }
+
+        const { classes } = this.props;
+        return (
+            <AppBar position="static" className={classes.appBar}>
+                <Toolbar>
+                    <Icon className={classes.icon} edge="start">movie</Icon>
+                    <Typography variant="h6" color="inherit" noWrap>
+                        <Link to="/" className={classes.link}>Upcoming Movies</Link>
+                    </Typography>
+
+                    <div className={classes.grow}/>
+
+                    <div className={classes.search}>
+                        <InputBase
+                            placeholder="Search movies…"
+                            classes={{
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
+                            }}
+                            onChange={this.handleChangeMovieQuery.bind(this)}
+                            onKeyPress={this.handleKeyDown.bind(this)}
+                        />
+
+                        <IconButton component={Link}
+                                    onClick={() => this.dispatchSearchEvent()}
+                                    disabled={movieQuery.length === 0}
+                                    to={searchUrl}
+                                    className={classes.iconButton} aria-label="Search">
+                            <Icon>search</Icon>
+                        </IconButton>
+                    </div>
+                </Toolbar>
+            </AppBar>
+        );
+    }
 }
 
 export default withStyles(styles)(PageHeader);
