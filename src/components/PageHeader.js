@@ -59,7 +59,7 @@ function PageHeader(props) {
     };
 
     const dispatchSearchEvent = query => {
-        if (!window.location.pathname.startsWith('/search')) {
+        if (!window.location.hash.includes('/search')) {
             return;
         }
 

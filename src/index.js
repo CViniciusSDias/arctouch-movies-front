@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 import UpcomingMoviesPage from "./components/UpcomingMovies/UpcomingMoviesPage";
 import './index.css';
@@ -8,13 +8,13 @@ import MovieDetailsPage from "./components/MovieDetails/MovieDetailsPage";
 import SearchMoviesPage from "./components/SearchMoviesPage/SearchMoviesPage";
 
 ReactDOM.render(
-    <BrowserRouter>
+    <Router>
         <Switch>
             <Route path="/" exact={true} component={UpcomingMoviesPage} />
             <Route path="/details/:id" exact={true} component={MovieDetailsPage} />
             <Route path="/search/:query" exact={true} component={SearchMoviesPage} />
         </Switch>
-    </BrowserRouter>,
+    </Router>,
     document.getElementById('root')
 );
 
