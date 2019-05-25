@@ -58,6 +58,15 @@ function PageHeader(props) {
         setMovieQuery(event.target.value);
     };
 
+    const dispatchSearchEvent = query => {
+        if (!window.location.pathname.startsWith('/search')) {
+            return;
+        }
+
+        let ev = new CustomEvent('search', { detail: query });
+        document.dispatchEvent(ev);
+    };
+
     return (
         <AppBar position="static" className={classes.appBar}>
             <Toolbar>
@@ -79,7 +88,7 @@ function PageHeader(props) {
                     />
 
                     <IconButton component={Link}
-                                onClick={() => window.location.pathname.startsWith('/search') ? window.location.href = `/search/${movieQuery}` : null}
+                                onClick={() => dispatchSearchEvent(movieQuery)}
                                 disabled={movieQuery.length === 0}
                                 to={`/search/${movieQuery}`}
                                 className={classes.iconButton} aria-label="Search">

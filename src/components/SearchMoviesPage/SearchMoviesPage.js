@@ -23,9 +23,23 @@ class SearchMoviesPage extends Component {
         };
     }
 
+    searchListener(e) {
+        this.setState({
+            movieList: []
+        });
+
+        this.loadMovies(e.detail);
+    }
+
     componentDidMount() {
         const { query } = this.props.match.params;
         this.loadMovies(query);
+
+        document.addEventListener('search', this.searchListener.bind(this));
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('search', this.searchListener.bind(this));
     }
 
     loadMovies(query) {
