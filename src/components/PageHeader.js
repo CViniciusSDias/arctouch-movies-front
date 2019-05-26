@@ -53,7 +53,8 @@ const styles = theme => ({
     },
     iconButton: {
         color: 'white',
-        flexBasis: '20%'
+        flexBasis: '20%',
+        boxSizing: 'border-box'
     },
 });
 
