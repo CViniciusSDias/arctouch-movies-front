@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/arctouch-movies-front/precache-manifest.bab002bec51f7ce911e964507a6d5fc8.js"
+  "/arctouch-movies-front/precache-manifest.2b6fa24c0277ccd4d9aa54707338c3a7.js"
 );
 
 self.addEventListener('message', (event) => {
