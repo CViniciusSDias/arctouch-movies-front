@@ -12,6 +12,8 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
     movieCard: {
         width: '50%',
+        maxWidth: '100%',
+        minWidth: 320,
         margin: '0 auto',
         marginBottom: theme.spacing.unit * 5
     },
