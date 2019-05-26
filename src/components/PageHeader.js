@@ -13,6 +13,10 @@ const styles = theme => ({
     appBar: {
         marginBottom: theme.spacing.unit * 5
     },
+    toolbar: {
+        flexWrap: 'wrap',
+        justifyContent: 'center'
+    },
     icon: {
         marginRight: theme.spacing.unit * 2
     },
@@ -25,6 +29,8 @@ const styles = theme => ({
     },
     search: {
         width: '20%',
+        minWidth: 250,
+        display: 'flex',
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
         backgroundColor: fade(theme.palette.common.white, 0.15),
@@ -34,19 +40,20 @@ const styles = theme => ({
     },
     inputRoot: {
         color: 'inherit',
-        width: '80%'
+        flexBasis: '80%'
     },
     inputInput: {
         paddingRight: theme.spacing.unit,
         paddingLeft: theme.spacing.unit,
         transition: theme.transitions.create('width'),
-        width: '20%',
+        width: '100%',
         [theme.breakpoints.up('md')]: {
             width: 200,
         },
     },
     iconButton: {
-        color: 'white'
+        color: 'white',
+        flexBasis: '20%'
     },
 });
 
@@ -111,7 +118,7 @@ class PageHeader extends Component {
         const { classes } = this.props;
         return (
             <AppBar position="static" className={classes.appBar}>
-                <Toolbar>
+                <Toolbar className={classes.toolbar}>
                     <Icon className={classes.icon} edge="start">movie</Icon>
                     <Typography variant="h6" color="inherit" noWrap>
                         <Link to="/" className={classes.link}>Upcoming Movies</Link>

@@ -9,7 +9,8 @@ const styles = () => ({
         margin: '0 auto'
     },
     movie: {
-        maxWidth: 300
+        maxWidth: 300,
+        margin: '0 auto'
     }
 });
 
@@ -19,7 +20,7 @@ function MovieList(props) {
     return (
         <Grid container spacing={8} className={classes.gridContainer}>
             {movieList.map((movie, i) => (
-                <Grid item xs={6} md={4} key={i}>
+                <Grid item xs={12} sm={6} md={4} key={i}>
                     <div className={classes.movie}>
                         <Movie movie={movie} />
                     </div>
