@@ -67,7 +67,7 @@ class PageHeader extends Component {
     }
 
     dispatchSearchEvent() {
-        if (!window.location.hash.includes('/search')) {
+        if (!this.isOnSearchPage()) {
             return;
         }
 
@@ -75,8 +75,12 @@ class PageHeader extends Component {
         document.dispatchEvent(ev);
     }
 
+    isOnSearchPage() {
+        return window.location.hash.includes('/search');
+    }
+
     handleKeyDown(event) {
-        if (event.key === 'Enter' && this.state.movieQuery.length > 0) {
+        if (event.key === 'Enter' && this.state.movieQuery.length > 0 && !this.isOnSearchPage()) {
             this.setState({
                 redirectToSearch: true
             });
@@ -89,7 +93,6 @@ class PageHeader extends Component {
 
         if (redirectToSearch) {
             return <Redirect to={searchUrl} />;
-
         }
 
         const { classes } = this.props;
