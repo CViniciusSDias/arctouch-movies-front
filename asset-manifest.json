@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/arctouch-movies-front/static/css/main.34de6062.chunk.css",
-    "main.js": "/arctouch-movies-front/static/js/main.019c230f.chunk.js",
-    "main.js.map": "/arctouch-movies-front/static/js/main.019c230f.chunk.js.map",
+    "main.js": "/arctouch-movies-front/static/js/main.324036d2.chunk.js",
+    "main.js.map": "/arctouch-movies-front/static/js/main.324036d2.chunk.js.map",
     "runtime~main.js": "/arctouch-movies-front/static/js/runtime~main.6347a367.js",
     "runtime~main.js.map": "/arctouch-movies-front/static/js/runtime~main.6347a367.js.map",
     "static/js/2.e1286def.chunk.js": "/arctouch-movies-front/static/js/2.e1286def.chunk.js",
     "static/js/2.e1286def.chunk.js.map": "/arctouch-movies-front/static/js/2.e1286def.chunk.js.map",
     "index.html": "/arctouch-movies-front/index.html",
-    "precache-manifest.2b6fa24c0277ccd4d9aa54707338c3a7.js": "/arctouch-movies-front/precache-manifest.2b6fa24c0277ccd4d9aa54707338c3a7.js",
+    "precache-manifest.aa09139b9cf13549f2332b66c75663ec.js": "/arctouch-movies-front/precache-manifest.aa09139b9cf13549f2332b66c75663ec.js",
     "service-worker.js": "/arctouch-movies-front/service-worker.js",
     "static/css/main.34de6062.chunk.css.map": "/arctouch-movies-front/static/css/main.34de6062.chunk.css.map"
   }
