@@ -29,7 +29,7 @@ const styles = theme => ({
     },
     search: {
         width: '20%',
-        minWidth: 250,
+        minWidth: 300,
         display: 'flex',
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
@@ -51,10 +51,12 @@ const styles = theme => ({
             width: 200,
         },
     },
-    iconButton: {
-        color: 'white',
+    iconButtonParent: {
         flexBasis: '20%',
         boxSizing: 'border-box'
+    },
+    iconButton: {
+        color: 'white',
     },
 });
 
@@ -139,13 +141,15 @@ class PageHeader extends Component {
                             value={movieQuery}
                         />
 
-                        <IconButton component={Link}
-                                    onClick={() => this.dispatchSearchEvent()}
-                                    disabled={movieQuery.length === 0}
-                                    to={searchUrl}
-                                    className={classes.iconButton} aria-label="Search">
-                            <Icon>search</Icon>
-                        </IconButton>
+                        <div className={classes.iconButtonParent}>
+                            <IconButton component={Link}
+                                        onClick={() => this.dispatchSearchEvent()}
+                                        disabled={movieQuery.length === 0}
+                                        to={searchUrl}
+                                        className={classes.iconButton} aria-label="Search">
+                                <Icon>search</Icon>
+                            </IconButton>
+                        </div>
                     </div>
                 </Toolbar>
             </AppBar>
