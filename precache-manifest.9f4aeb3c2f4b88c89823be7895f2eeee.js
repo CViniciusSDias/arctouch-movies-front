@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e91bcde2f0a4dbee1e9713786ad77211",
+    "revision": "3042b257d895d6e40f6dd912349c3bfd",
     "url": "/arctouch-movies-front/index.html"
   },
   {
-    "revision": "2a1be8a8b6a9521c8163",
+    "revision": "e401b30631342f6a5cb7",
     "url": "/arctouch-movies-front/static/css/main.34de6062.chunk.css"
   },
   {
-    "revision": "fb1c123d925d8aa7e3b0",
-    "url": "/arctouch-movies-front/static/js/2.c4207629.chunk.js"
+    "revision": "2e5fb691d8f5ca12f5d6",
+    "url": "/arctouch-movies-front/static/js/2.e1286def.chunk.js"
   },
   {
-    "revision": "2a1be8a8b6a9521c8163",
-    "url": "/arctouch-movies-front/static/js/main.6fd2777b.chunk.js"
+    "revision": "e401b30631342f6a5cb7",
+    "url": "/arctouch-movies-front/static/js/main.332147c5.chunk.js"
   },
   {
     "revision": "4a129826c774536c4d3e",
