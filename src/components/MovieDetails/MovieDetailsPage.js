@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import PageHeader from "../PageHeader";
-import {ApiService} from "../../service/ApiService";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import {withStyles} from "@material-ui/core/styles";
-import AlertDanger from "../AlertDanger";
-import MovieDetails from "./MovieDetails";
+import PageHeader from '../PageHeader';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import AlertDanger from '../AlertDanger';
+import MovieDetails from './MovieDetails';
+import { withStyles } from '@material-ui/core/styles';
+import { ApiService } from '../../service/ApiService';
 
 const styles = theme => ({
     mt5: {

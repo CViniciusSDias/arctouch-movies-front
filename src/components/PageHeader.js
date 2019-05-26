@@ -3,11 +3,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
-import InputBase from "@material-ui/core/InputBase";
+import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
-import { fade } from "@material-ui/core/styles/colorManipulator";
+import { fade } from '@material-ui/core/styles/colorManipulator';
 import { Link, Redirect } from 'react-router-dom';
-import IconButton from "@material-ui/core/IconButton";
 
 const styles = theme => ({
     appBar: {
