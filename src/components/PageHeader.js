@@ -73,6 +73,9 @@ class PageHeader extends Component {
 
         let ev = new CustomEvent('search', {detail: this.state.movieQuery});
         document.dispatchEvent(ev);
+        this.setState({
+            movieQuery: ''
+        })
     }
 
     isOnSearchPage() {
@@ -80,7 +83,17 @@ class PageHeader extends Component {
     }
 
     handleKeyDown(event) {
-        if (event.key === 'Enter' && this.state.movieQuery.length > 0 && !this.isOnSearchPage()) {
+        const userPressedEnter = event.key === 'Enter';
+        if (!userPressedEnter) {
+            return;
+        }
+
+        if (this.isOnSearchPage()) {
+            return this.dispatchSearchEvent();
+
+        }
+
+        if (this.state.movieQuery.length > 0) {
             this.setState({
                 redirectToSearch: true
             });
@@ -115,6 +128,7 @@ class PageHeader extends Component {
                             }}
                             onChange={this.handleChangeMovieQuery.bind(this)}
                             onKeyPress={this.handleKeyDown.bind(this)}
+                            value={movieQuery}
                         />
 
                         <IconButton component={Link}
